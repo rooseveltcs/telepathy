@@ -1,39 +1,35 @@
 package telepathy;
-
+//TODO: Only class left to be commented out
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.Graphics;
 import java.awt.GraphicsEnvironment;
 import java.awt.GridLayout;
 import java.awt.Point;
 import java.awt.event.MouseEvent;
+
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
+
 import java.util.Scanner;
 
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.border.Border;
 import javax.swing.event.MouseInputAdapter;
 
 public class Board {
 	
 	private static final int BOARD_LENGTH = 1100;
 	private static final int BOARD_WIDTH = 1000;
-	private static final int GRID_LENGTH = 800;
 	
 	private static final String[] colors = new String[] {"Yellow", "Orange", "Red", "Purple", "Pink", "Blue", "Green", "Silver", "White"};
 	private static final Symbol[] symbols = new Symbol[] {new Sun(), new Star(), new Eye(), new Moon(), 
 			new Circle(), new Bolt(), new Diamond(), new Hand(), new Heart()};
-	
 	
 	private static Font FONT;
 	
@@ -304,14 +300,15 @@ public class Board {
 				System.out.println(tile.toString());
 				gTable.makeGuess(tile);
 			} else if (event.getClickCount() > 1) {
-				solveCheck sCheck = new solveCheck(tile, FONT, secretSquare);
+				SolveCheck sCheck = new SolveCheck(tile, FONT, secretSquare);
 				System.out.println(sCheck.getToSolve());
 				if (sCheck.getToSolve()){
-					board.setVisible(false);//TODO: Doesn;t have intended functionality
+					board.setVisible(false);//TODO: Doesn't have intended functionality
 				}
 			}
 		}
 	}
+	
 	
 	private Tile getSecretSq() {
 		int row = (int) (Math.random() * 17);
@@ -353,11 +350,14 @@ public class Board {
 		} else if (s.equals("white")){
 			return Color.WHITE;
 		} else {
-			return null;
-			//throw IllegalArgumentException;
+			IllegalArgumentException exc = new IllegalArgumentException("Invalid Color Name");
+			throw exc;
 		}
 	}
-	//TODO: Doesn't account for flawed input
+	
+	/*
+	 * 
+	 */
 	private Symbol stringToSymbol(String s) throws IllegalArgumentException {
 		s = s.toLowerCase();
 		if (s.equals("sun")){
@@ -379,8 +379,8 @@ public class Board {
 		} else if (s.equals("heart")){
 			return new Heart();
 		} else {
-			return null;
-			//throw IllegalArgumentException;
+			IllegalArgumentException exc = new IllegalArgumentException("Invalid Symbol Name");
+			throw exc;
 		}
 	}
 }

@@ -1,12 +1,23 @@
 package telepathy;
-import javax.swing.*; 
+import javax.swing.ImageIcon;
 
+/*
+ * Each Symbol class overrides the method getName() [to return 
+ * the shape's name, and getImage() which obtains a particular file
+ * name for the visual representation before calling the resizeImage(File f)
+ * method of the abstract Symbol class. 
+ * 
+ * @see telepathy.Symbol
+ */
 public class Circle extends Symbol {
+	
+	private final static String name = "Circle";
+	private final static String file = "circle.png";
+	
 	public ImageIcon getImage(){
-		   String file = "circle.png";
 		   return resizeImage(file);
 	}
 	public String getName(){
-		return "Circle";
+		return name;
 	}
 }
