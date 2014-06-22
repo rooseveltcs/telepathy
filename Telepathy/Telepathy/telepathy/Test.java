@@ -13,7 +13,7 @@ import java.io.FileNotFoundException;
  */
 public class Test {
 	public static void main (String[] args) throws FileNotFoundException{
-		File f = new File("gridLayout.txt");
+		File f = new File("gridLayout.txt");//File is a text file with row, column, color, symbol seperated by spaces; each line is another tile (left to right)
 		Board b = new Board(f);
 		if (!b.board.isShowing()){ //TODO: Does not have intended functionality...nothing prompts the Board to close; when Board is closed, nothing happens
 			System.out.println("Game Over");
